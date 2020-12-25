@@ -1,8 +1,9 @@
-local k = import 'ksonnet-util/kausal.libsonnet';
-local sultan_k = import 'sultan-k/sultan-k.libsonnet';
 
 {
-  local deployment = sultan_k.apps.v1.deployment,
+  local k =
+    (import 'k.libsonnet'),
+
+  local deployment = k.apps.v1.deployment,
   local container = k.core.v1.container,
 
   expandContainerEnvironment(containerNames, envMap): {
@@ -13,6 +14,7 @@ local sultan_k = import 'sultan-k/sultan-k.libsonnet';
       ),
   },
 
+  /*
   expandInitContainerEnvironment(containerNames, envMap): {
     deployment+:
       deployment.mapInitContainersWithName(
@@ -20,5 +22,5 @@ local sultan_k = import 'sultan-k/sultan-k.libsonnet';
         function(c) c + container.withEnvMap(envMap)
       ),
   },
-
+  */
 }
